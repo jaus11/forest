@@ -1,6 +1,7 @@
 import React from "react";
 import Tree from "./Tree";
 import ReactDOM from 'react-dom';
+import './TimeLine.css'
 
 export default class TimeLine extends React.Component<Props, State> {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class TimeLine extends React.Component<Props, State> {
           // console.log(xhr.response.posts);
           xhr.response.posts.forEach( post => {
             self.setState({
-              timeline: self.state.timeline.concat(<Tree text={post.text}></Tree>)
+              timeline: self.state.timeline.concat(<Tree post={post} key={post.id}/>)
             });
           });
         } else {
@@ -36,6 +37,12 @@ export default class TimeLine extends React.Component<Props, State> {
   }
 
   render() {
-    return this.state.timeline;
+    return (
+      <table>
+        <tbody>
+          {this.state.timeline}
+        </tbody>
+      </table>
+    );
   }
 }

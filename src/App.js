@@ -22,11 +22,7 @@ function App() {
         </a>
       </header>
       */}
-      <table>
-        <tbody>
-          <TimeLine />
-        </tbody>
-      </table>
+      <TimeLine/>
     </div>
   );
 }
