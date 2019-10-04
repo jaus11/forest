@@ -1,11 +1,7 @@
 import React from "react";
-import ReactDOM from 'react-dom';
 import './Tree.css'
 
 export default class Tree extends React.Component<Props> {
-  constructor (props) {
-    super(props);
-  }
   render() {
     return (
       <tr>

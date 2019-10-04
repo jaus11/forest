@@ -1,9 +1,9 @@
-table {
-  border-spacing: 8px;
-}
-
-.TimeLine {
+.PostPanel {
   display: inline-block;
   width: 30%;
   height: 100%;
+}
+
+textarea {
+  height: 70%;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Tree from "./Tree";
-import ReactDOM from 'react-dom';
+
 import './TimeLine.css'
 
 export default class TimeLine extends React.Component<Props, State> {
@@ -11,7 +11,7 @@ export default class TimeLine extends React.Component<Props, State> {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:9000/posts", true);
     let self = this;
@@ -38,11 +38,13 @@ export default class TimeLine extends React.Component<Props, State> {
 
   render() {
     return (
-      <table>
-        <tbody>
-          {this.state.timeline}
-        </tbody>
-      </table>
+      <div className="TimeLine">
+        <table>
+          <tbody>
+            {this.state.timeline}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
