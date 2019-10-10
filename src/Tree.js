@@ -31,7 +31,6 @@ Tree.propTypes = {
     text: PropTypes.string,
     posted_at: PropTypes.string,
   }),
-  key: PropTypes.string,
 };
 
 Tree.defaultProps = {
@@ -40,5 +39,4 @@ Tree.defaultProps = {
     text: 'loading',
     posted_at: 'loading',
   },
-  key: 'loading',
 };
