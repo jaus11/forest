@@ -1,8 +1,8 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import TimeLine from './TimeLine'
-import PostPanel from './PostPanel'
+import TimeLine from './TimeLine';
+import PostPanel from './PostPanel';
 
 function App() {
   return (
@@ -23,8 +23,8 @@ function App() {
         </a>
       </header>
       */}
-      <PostPanel/>
-      <TimeLine/>
+      <PostPanel />
+      <TimeLine />
     </div>
   );
 }
