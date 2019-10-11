@@ -7,7 +7,7 @@ export default class PostPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'demo',
+      text: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -21,7 +21,10 @@ export default class PostPanel extends React.Component {
         user_id: '11111111-1111-1111-1111-111111111111',
         text,
       });
-      console.log(result);
+      // console.log(result);
+      if (result.status === 200) {
+        this.setState({ text: '' });
+      }
     } catch (error) {
       console.log('error!!');
     }
@@ -35,7 +38,7 @@ export default class PostPanel extends React.Component {
     const { text } = this.state;
     return (
       <div className="PostPanel">
-        <textarea rows="7" onChange={this.onChange} value={text} />
+        <textarea onChange={this.onChange} value={text} />
         <button onClick={this.onClick} type="submit">tree</button>
       </div>
     );

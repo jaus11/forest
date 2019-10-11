@@ -1,9 +1,14 @@
 td {
   /* border: 2px #808080 solid; */
-  border: 1px solid #aaa;
+  border: 1px solid black;
   border-collapse: collapse;
   border-spacing: 0;
   border-radius: 6px;
+  background-color: white;
+}
+
+p {
+  word-break: break-all;
 }
 
 .tree_text {
