@@ -1,32 +1,32 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import TimeLine from './TimeLine';
 import PostPanel from './PostPanel';
+import Tree from './Tree';
 
-function App() {
-  return (
-    <div className="App">
-      {/*
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      */}
-      <PostPanel />
-      <TimeLine />
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timeline: [],
+    };
+    this.addtree = this.addtree.bind(this);
+  }
+
+  addtree(post) {
+    const { timeline } = this.state;
+    this.setState({
+      timeline: [<Tree post={post} key={post.id} />].concat(timeline),
+    });
+  }
+
+  render() {
+    const { timeline } = this.state;
+    return (
+      <div className="App">
+        <PostPanel addtree={this.addtree} />
+        <TimeLine timeline={timeline} addtree={this.addtree} />
+      </div>
+    );
+  }
 }
-
-export default App;

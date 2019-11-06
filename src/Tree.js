@@ -16,7 +16,9 @@ export default class Tree extends React.Component {
     return (
       <tr>
         <td>
-          <p className="user_id">{userID}</p>
+          {
+            // <p className="user_id">{userID}</p>
+          }
           <p className="tree_text">{text}</p>
           <p className="posted_at">{postedAt}</p>
         </td>

@@ -1,28 +1,19 @@
 import React from 'react';
-import Tree from './Tree';
+import PropTypes from 'prop-types';
 
 import './TimeLine.css';
 
 export default class TimeLine extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeline: [],
-    };
-  }
-
   componentDidMount() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:9000/posts', true);
-    const self = this;
     xhr.onload = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           // console.log(xhr.response.posts);
           xhr.response.posts.forEach((post) => {
-            self.setState({
-              timeline: self.state.timeline.concat(<Tree post={post} key={post.id} />),
-            });
+            const { addtree } = this.props;
+            addtree(post);
           });
         } else {
           console.error(xhr.statusText);
@@ -37,7 +28,7 @@ export default class TimeLine extends React.Component {
   }
 
   render() {
-    const { timeline } = this.state;
+    const { timeline } = this.props;
     return (
       <div className="TimeLine">
         <table>
@@ -49,3 +40,13 @@ export default class TimeLine extends React.Component {
     );
   }
 }
+
+TimeLine.propTypes = {
+  timeline: PropTypes.arrayOf,
+  addtree: PropTypes.func,
+};
+
+TimeLine.defaultProps = {
+  timeline: [],
+  addtree: () => {},
+};

@@ -1,30 +1,41 @@
 import React from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import './PostPanel.css';
 
 export default class PostPanel extends React.Component {
   constructor(props) {
     super(props);
+    const websocket = new WebSocket('ws://localhost:9000/socket');
+    websocket.onopen = () => {
+      console.log('connected');
+    };
+    websocket.onmessage = (me) => {
+      const msg = JSON.parse(me.data);
+
+      // console.log(msg);
+      props.addtree(msg);
+    };
     this.state = {
       text: '',
+      ws: websocket,
     };
-
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
   async onClick() {
     try {
-      const { text } = this.state;
-      const result = await axios.post('http://localhost:9000/posts/create', {
-        user_id: '11111111-1111-1111-1111-111111111111',
-        text,
-      });
-      // console.log(result);
-      if (result.status === 200) {
-        this.setState({ text: '' });
-      }
+      const { text, ws } = this.state;
+      // console.log(`send ${text}`);
+      const msg = JSON.stringify(
+        {
+          user_id:
+              '11111111-1111-1111-1111-111111111111',
+          text,
+        },
+      );
+      ws.send(msg);
     } catch (error) {
       console.log('error!!');
     }
@@ -44,3 +55,11 @@ export default class PostPanel extends React.Component {
     );
   }
 }
+
+PostPanel.propTypes = {
+  addtree: PropTypes.func,
+};
+
+PostPanel.defaultProps = {
+  addtree: () => {},
+};
